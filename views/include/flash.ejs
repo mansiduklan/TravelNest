@@ -1,0 +1,22 @@
+<% if(message.length){ %>
+    <div class="row">
+    <div class="alert alert-success col-md-10 alert-dismissible fade show" role="alert" >
+    success <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    </div>
+<% } %>
+
+<% if(errmessage.length){ %>
+    <div class="row">
+    <div class="alert alert-danger col-md-10 alert-dismissible fade show" role="alert" >
+    <%= errmessage %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    </div>
+<% } %>
+
+
+
+
+

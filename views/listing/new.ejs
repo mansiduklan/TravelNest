@@ -1,0 +1,63 @@
+<% layout("./layout/boilerplate") %>
+<body>
+  <div class="offset-2">
+    <h1>Create a New Listing</h1>
+  <div class="row">
+  <form method="post" action="/listing" class="needs-validation" novalidate enctype="multipart/form-data" >
+    <div class="mb-3 col-10 col-sm-8">
+      <label for="title" class="form-label">Title: </label>
+      <input type="text" class="form-control" id="title" name="listing[title]" required aria-describedby="emailHelp">
+      <div class="invalid-feedback">
+        Please provide a title
+      </div>
+    </div>
+    <div class="mb-3 col-10 col-sm-8 ">
+      <label for="description" class="form-label">Description: </label>
+      <input type="text" class="form-control" id="description" name="listing[description]" required >
+      <div class="invalid-feedback">
+        Please provide a description
+      </div>
+    </div>
+    <div class="mb-3 col-10 col-sm-8 ">
+      <label for="img" class="form-label">Image: </label>
+      <input type="file" class="form-control" id="img" name="listing[image][url]" >
+    </div>
+    <div class="mb-3 col-10 col-sm-8">
+          <label for="options" class="form-label">Select a category: </label>
+          <select class="form-select" name="listing[category]" aria-label="Default select example" id="options">
+            <option value="camping">Camping</option>
+            <option value="mountain">Mountain</option>
+            <option value="beach">Beach</option>
+            <option value="golfing">Golfing</option>
+            <option value="pool">Pool</option>
+            <option value="arctic">Arctic</option>
+          </select>
+        </div>
+    <div class="row">
+    <div class="mb-3 col-8 col-md-4  ">
+      <label for="price" class="form-label">Price: </label>
+      <input type="number" class="form-control" id="price" name="listing[price]" required>
+      <div class="invalid-feedback">
+        Please provide a price
+      </div>    
+    </div>
+    <div class="mb-3 col-8 col-md-4 ">
+        <label for="country" class="form-label">Country:</label>
+        <input type="text" class="form-control" id="country" name="listing[country]" required >
+        <div class="invalid-feedback">
+          Please provide a country name
+        </div>    
+    </div>
+    </div>
+    <div class="mb-3  col-10 col-sm-8">
+      <label for="location" class="form-label">Location:</label>
+      <input type="text" class="form-control" id="location" name="listing[location]" required >
+      <div class="invalid-feedback">
+        Please provide a location
+      </div>
+    </div>
+  <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+  </div>
+  </div>
+</body>

@@ -1,0 +1,13 @@
+img{
+    height: 60vh ;
+    width: 80vh;
+    border-radius: 10px;
+}
+.outer{
+    width: 38.5rem;
+    margin-top: 1rem;
+}
+.btns{
+    display: flex;
+    justify-content: flex-start;
+}

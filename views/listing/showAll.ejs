@@ -1,0 +1,127 @@
+<% layout("/layout/boilerplate") %>
+<head>
+    <link rel="stylesheet" href="/showAll.css">
+    <style>
+        #optionHead{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        #filters{
+            display: flex;
+            flex-wrap: wrap;
+            margin: 1rem 2rem;
+        }
+        .filter{
+            margin: 0 1rem;
+            text-align: center;
+            opacity: 0.8;
+        }
+        .filter:hover{
+            opacity: 1;
+            text-decoration: underline;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .taxToggle{
+            height: 50px;
+            border: 1px solid rgb(133, 156, 192);
+            background-color: rgb(244, 248, 255);
+
+            border-radius: 20px;
+            align-content: center; 
+            padding: 0 0.8rem;
+        }
+    </style> 
+</head>
+<body>
+    <div id="optionHead">
+        <div id="filters">
+            <a href="/listing/category/trending">
+            <div class="filter"> 
+                <i class="fa-solid fa-fire" style="color: rgb(30, 48, 80);"></i>
+                <p>Trending</p>
+            </div>
+            </a>
+            <a href="/listing/category/camping">
+                <div class="filter">
+                    <i class="fa-solid fa-campground" style="color: rgb(30, 48, 80);"></i>
+                    <p>Camping</p>
+                </div>
+            </a>
+            <a href="/listing/category/mountain">
+                <div class="filter">
+                <i class="fa-solid fa-mountain-city" style="color: rgb(30, 48, 80);"></i>  
+                <p>Mountain</p>
+                </div>
+            </a>
+            <a href="/listing/category/beach">
+                <div class="filter">
+                <i class="fa-solid fa-umbrella-beach" style="color: rgb(30, 48, 80);"></i>
+                <p>Beach</p>
+            </div>
+            </a>
+            <a href="/listing/category/arctic">
+                <div class="filter">
+                <i class="fa-regular fa-snowflake" style="color: rgb(30, 48, 80);"></i>
+                <p>Arctic</p>
+            </div>
+            </a>
+            <a href="/listing/category/golfing">
+                <div class="filter">
+                <i class="fa-solid fa-golf-ball-tee" style="color: rgb(30, 48, 80);"></i>
+                <p>Golfing</p>
+            </div>
+            </a>
+            <a href="/listing/category/pool">
+            <div class="filter">
+                <i class="fa-solid fa-water-ladder" style="color: rgb(30, 48, 80);"></i>
+                <p>Pool</p>
+            </div>
+            </a>
+        </div>
+        <div class="taxToggle">
+            <div class="form-check form-switch  form-check-reverse">
+                <label class="form-check-label" for="switchCheckDefault">Display total Price after taxes </label>
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-around row-cols-4">
+    <% if (allListing.length) { %>
+        <% for( let list of allListing ) { %>
+        <div class="card" style="width: 18rem;">
+            <a href="/listing/<%= list._id%>"><img src="<%= list.image.url%>" class="card-img-top" alt="img"></a>
+            <div class="card-body">
+                <p class="card-text"> <a href="/listing/<%= list._id%>"><%= list.title %></a> <br>
+                    &#8377;<span class="list-price"  data-price="<%= list.price %>"> <%= list.price.toLocaleString("en-IN") %>/night</span><br> 
+                    <%= list.location %>,   
+                    <%= list.country %> </p>
+            </div>
+        </div>
+    <% } %>
+    <% }  else {%>
+        <div>
+            <iframe src="https://lottie.host/embed/f4a03143-3f78-4e1b-92b6-c5e9ad21181b/J0HCMIPfq9.lottie"></iframe>
+            <h3>No Stay Listing Found</h3>
+        </div>
+    <% } %>
+    </div>
+
+    <script>
+        const taxSwitch = document.getElementById("switchCheckDefault");
+        taxSwitch.addEventListener("change",()=>{
+            const allPrice = document.querySelectorAll(".list-price");
+            for( let price of allPrice){
+                const simplePrice = Number(price.dataset.price);
+                if(taxSwitch.checked){      
+                    let taxPrice = simplePrice * 1.18 ;              
+                    price.innerText = taxPrice.toLocaleString("en-IN")+"/night (includes all taxes)" ;
+                }else {
+                    price.innerText = simplePrice.toLocaleString("en-IN")+"/night";
+                }
+            }
+        });
+    </script>
+</body>
+
